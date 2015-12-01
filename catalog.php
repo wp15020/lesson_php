@@ -7,5 +7,9 @@
 	<body>
 		<p>product_id : <?php print $_POST['product_id']; ?></p>
 		<p>category : <?php print $_POST['category']; ?></p>
+
+		<pre>
+<?php var_dump($_POST); ?>
+		</pre>
 	</body>
 </html>
