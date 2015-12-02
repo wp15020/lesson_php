@@ -10,10 +10,11 @@
 		if ( array_key_exists('_submit_check' , $_POST) ) {
 
 			//追記
-			if ( validate_form() ) {
-				process_form();
+			$form_errors = validate_form();
+			if ( $form_errors ) {
+				show_form($form_errors);
 			} else {
-				show_form();
+				process_form();
 			}
 			//追記
 			
@@ -22,10 +23,17 @@
 		}
 
 function process_form() {
-	print 'Hello, '.$_POST['my_name'];
+	print '<p>Hello, '.$_POST['my_name'].'</p>';
+	print '<p>Hello, '.strip_tags($_POST['my_name']).'</p>';
+	print '<p>Hello, '.htmlentities($_POST['my_name'] , ENT_QUOTES , 'utf-8').'</p>';
 }
 
-function show_form() {
+function show_form($errors = '') {
+	if( $errors ) {
+		print 'Please connect these errors : <ul><li>';
+		print implode('</li><li>' , $errors);
+		print '</li></ul>';
+	}
 print <<<_HTML_
 <form method="post" 
 		action="{$_SERVER['SCRIPT_NAME']}">
@@ -41,14 +49,11 @@ _HTML_;
 
 function validate_form() {
 	//my_nameの長さは3文字以上あるか
-	if(mb_strlen($_POST['my_name']) < 3) {
-		if(array_key_exists('_submit_check' , $_POST)){
-			print '<p>3文字以上記入してください</p>';
-		}
-		return false;
-	} else {
-		return true;
+	$errors = array();
+	if(strlen($_POST['my_name']) < 3) {
+		$errors[] = 'Your name must be at least 3 letters long';
 	}
+	return $errors;
 }
 ?>
 	</body>
