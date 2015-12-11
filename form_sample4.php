@@ -6,16 +6,18 @@
 	</head>
 	<body>
 <?php
-
 		if ( array_key_exists('_submit_check' , $_POST) ) {
 
 			//追記
 			$form_errors = validate_form();
-			if ( $form_errors ) {
+			if ( $form_errors ){
 				show_form($form_errors);
-			} else {
+			}
+			else{
 				process_form();
 			}
+			
+			
 			//追記
 			
 		} else {
