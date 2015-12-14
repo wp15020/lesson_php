@@ -26,7 +26,7 @@ if (isset($_POST['thread_name'])){
 	<title>掲示板</title>
 	<style>
 	div{
-		font-size:200%;
+		font-size:150%;
 	}
 	</style>
 
@@ -41,7 +41,7 @@ $select_query = mysqli_query($db , $select_sql);
 		echo '<div>';
 			while($threads = mysqli_fetch_assoc($select_query)){
 				echo '<p>';
-				echo '<a href="keizi.php">'.$threads['guru'].'.&nbsp;'.$threads['sure'] . '</a><br>';
+				echo '<a href="keizi.php?guru='.$threads['guru'].'">'.$threads['guru'].'.&nbsp;'.$threads['sure'] . '</a><br>';
 				echo $threads['niti'];
 				echo '</p>';
 			}
