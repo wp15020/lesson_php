@@ -49,6 +49,8 @@ $select_query = mysqli_query($db , $select_sql);
 	} else {
 		echo '<p>スレッドがないです・・・。</p>';
 	}
+	//mysqlとの接続を解除
+	mysqli_close($db);
 ?>
 	
 	<form action="keizi_top.php" method="post">

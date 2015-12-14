@@ -97,6 +97,8 @@
 				}
 			echo '</div>';
 		}
+		//mysqlとの接続を解除
+		mysqli_close($db);
 ?>
 <div>
 <form method="post" action="keizi.php<?php print '?guru='.$_GET['guru']; ?>">
